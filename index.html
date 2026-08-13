@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Metropolis</title>
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="isometric.css" />
+</head>
+<body>
+  <h1>Metropolis</h1>
+  <p class="subtitle">Tap an empty plot to start a task. Tap a building to advance it.</p>
+
+  <div class="scene">
+    <div class="world" id="world"></div>
+  </div>
+
+  <!-- Load order matters: state.js and progress.js define plain global
+       functions with no module system, so later files can call them
+       directly as long as they're loaded after. See AGENT.md. -->
+  <script src="state.js"></script>
+  <script src="progress.js"></script>
+  <script src="render.js"></script>
+</body>
+</html>

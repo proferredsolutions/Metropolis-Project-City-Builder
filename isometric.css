@@ -1,0 +1,55 @@
+/* isometric.css
+   The isometric look comes from tilting the WORLD once and letting every
+   tile/building sit inside it using plain, untilted cube math. See
+   AGENT.md for why this is simpler than tilting each building individually.
+   Colors and per-task sizing are set inline by render.js, since those
+   depend on task data — this file only handles structure/positioning. */
+
+.scene {
+  perspective: 1200px;
+  width: 100%;
+  max-width: 640px;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.world {
+  position: relative;
+  transform-style: preserve-3d;
+  /* The single rotation that makes the whole grid read as isometric. */
+  transform: rotateX(55deg) rotateZ(45deg);
+  width: 1px;
+  height: 1px;
+}
+
+.tile {
+  position: absolute;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.tile-ground {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.tile-ground.empty {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+}
+
+.tile-ground.occupied {
+  background: #5c8f3b;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.face {
+  position: absolute;
+}
+
+/* Placeholder hook for the overdue cracks/dust visual — see TASKS.md */
+.tile.overdue .tile-ground {
+  outline: 1px solid #c0392b;
+}
