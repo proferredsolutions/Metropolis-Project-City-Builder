@@ -2,7 +2,7 @@
 
 ## Overview
 Metropolis is a task/project tracker skinned as an isometric city-builder
-game. Each task or project becomes a building on a fixed 5x5 grid. As you
+game. Each task or project becomes a specific type of building on a specific section of terrain/land. (playing area) the terrain/playing area is overlayed by a invisible grid system that appears only when selecting a specific area when creating a project or task, or when moving buildings around.(each building, road etc takes up minimum one grid worth of land, for larger buildings etc they may take up more then one grid.) the terrain isnt flat but has hills, mountains, valleys, waterways, forests, etc so normal rules would apply (where buildings etc can be placed according to the terrain.) when first starting out maybe the app starts by creating a random or pre-made/pre-fixed terrain, scenery etc,    The whole land area could take up about 50x50 on smaller side or 100x100 plus grid squares. an idea is for when 1st starting out that maybe the new user only gets to use a certain amount like a 5x5 grid as starting point instead of having the whole land available right-away and then as the player/user completes tasks/buildings every so many levels, or points it unlocks the playing area size (the grid expands/playing area gets bigger an bigger as you progress, unlock it or level up. As you
 make real-world progress on a task, its building visibly grows through
 construction stages; completing it finishes the building. XP and a
 level/badge system reward real effort with cosmetic unlocks (new building
@@ -10,6 +10,7 @@ styles, decorative extras) — never with gameplay-mechanic changes. There is
 no currency, no failure state, and no time pressure beyond a purely visual
 overdue marker. The goal is a lightweight app that makes real task-tracking
 feel visually rewarding without becoming stressful.
+
 
 ## Project Structure
 - `state.js` — task data model + `localStorage` persistence (CRUD only, no
