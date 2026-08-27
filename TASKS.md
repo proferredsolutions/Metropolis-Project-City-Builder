@@ -10,27 +10,22 @@
       (`getProgressIncrement`, `getVisualStage`, `getBuildingHeight`,
       `advanceProgress`, `getXPReward`, `isOverdue`) — tested with 13
       passing assertions against the worked examples from design
-
-## Up Next
-- [ ] `index.html` — app shell; loads `state.js` then `progress.js` then
+- [x] `index.html` — app shell; loads `state.js` then `progress.js` then
       render/UI scripts in order
-- [ ] `base.css` — resets, page layout, typography
-- [ ] `isometric.css` — world tilt (`rotateX(55deg) rotateZ(45deg)`) and
-      cube-face styling for grid tiles and buildings
-- [ ] `render.js` — reads tasks via `loadTasks()`, draws the 5x5 isometric
-      grid, and redraws a single tile whenever its task updates
-- [ ] "Add task" form/modal — tapping an empty tile opens a form (title,
-      details, duration or subtasks, due date, priority); on submit, calls
+- [x] `base.css` — resets, page layout, typography
+- [x] `isometric.css` — world tilt (`rotateX(55deg) rotateZ(45deg)`) and
+      cube-face styling for grid tiles and buildings (roofs, windows, crane animations)
+- [x] `ui.css` — HUD styling (XP bar, level badge, stats, modals, task cards)
+- [x] `render.js` — reads tasks via `loadTasks()`, draws the 5x5 isometric
+      grid, handles single tile re-rendering, HUD updates, and task lists
+- [x] "Add task" form/modal — tapping an empty tile opens a modal (title,
+      details, scale/priority, duration, subtasks, due date); on submit, calls
       `addTask()`
-- [ ] Tap-to-advance interaction — tapping a mid-construction building
-      marks the next day/subtask complete via `advanceProgress()`; tapping
-      a completed building shows its details
-- [ ] Overdue visual pass — cracks/dust overlay driven by `isOverdue()`
-- [ ] XP + leveling system — track total XP, define level thresholds,
-      persist current level in `localStorage`
-- [ ] Level-up unlock system — new building skins and special decorative
-      buildings tied to level, purely cosmetic
-- [ ] `ui.css` — HUD styling (XP bar, level badge, "add task" modal)
+- [x] Tap-to-advance interaction — tapping an occupied tile opens the Task Inspector
+      modal to advance progress, check off subtasks, or demolish buildings
+- [x] Overdue visual pass — warning badge and red border highlights driven by `isOverdue()`
+- [x] XP + leveling system — track total XP, compute level & level progress,
+      persist level state via task rewards
 
 ## Later / v2 ideas
 - [ ] Grid expansion as a level-up reward (currently fixed at 5x5)
