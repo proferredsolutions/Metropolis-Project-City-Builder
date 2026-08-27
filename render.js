@@ -29,6 +29,9 @@ function taskAtPosition(tasks, col, row) {
 function buildTileElement(col, row, task) {
   const tile = document.createElement("div");
   tile.className = "tile";
+  // Store coordinates as data attributes for precise O(1) DOM updates.
+  tile.dataset.col = col;
+  tile.dataset.row = row;
 
   // Center the grid: with GRID_SIZE=5, columns/rows 0-4 map to
   // offsets -2..+2 around the middle, in TILE_SIZE steps.
@@ -94,9 +97,32 @@ function buildTileElement(col, row, task) {
   return tile;
 }
 
+/**
+ * Renders or updates a single tile at (col, row) without rebuilding the entire grid.
+ * Performance Optimization: By selecting and replacing/appending only the modified tile in the DOM,
+ * we avoid destroying and rebuilding all 25 grid elements. This reduces DOM operations
+ * by ~25x per interaction, prevents layout/reflow thrashing, and preserves any GPU-accelerated CSS animations.
+ */
+function renderTileAt(col, row) {
+  const world = document.getElementById("world");
+  if (!world) return;
+
+  const tasks = loadTasks();
+  const task = taskAtPosition(tasks, col, row);
+  const newTile = buildTileElement(col, row, task);
+
+  const existingTile = world.querySelector(`[data-col="${col}"][data-row="${row}"]`);
+  if (existingTile) {
+    world.replaceChild(newTile, existingTile);
+  } else {
+    world.appendChild(newTile);
+  }
+}
+
 /** Clears and redraws the entire grid from current task data. */
 function renderGrid() {
   const world = document.getElementById("world");
+  if (!world) return;
   world.innerHTML = "";
   const tasks = loadTasks();
 
@@ -123,13 +149,13 @@ function handleTileClick(col, row, task) {
     const title = prompt("New task/project name:");
     if (!title) return;
     addTask({ title, gridPosition: { col, row }, durationDays: 1 });
-    renderGrid();
+    renderTileAt(col, row);
     return;
   }
 
   const updates = advanceProgress(task);
   updateTask(task.id, updates);
-  renderGrid();
+  renderTileAt(col, row);
 }
 
 document.addEventListener("DOMContentLoaded", renderGrid);
