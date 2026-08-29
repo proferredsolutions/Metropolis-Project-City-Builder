@@ -48,8 +48,8 @@ function getLevelInfo(totalXP) {
 }
 
 /** Updates HUD header elements (Level, XP bar, completed count, active count). */
-function updateHUD() {
-  const tasks = loadTasks();
+// Performance optimization: Accepts optional pre-loaded `tasks` array to avoid duplicate localStorage reads and JSON parsing.
+function updateHUD(tasks = loadTasks()) {
   const totalXP = calculateTotalXP(tasks);
   const { level, xpInCurrentLevel, xpForNextLevel } = getLevelInfo(totalXP);
 
@@ -165,8 +165,9 @@ function renderTileAt(col, row) {
     world.appendChild(newTile);
   }
 
-  updateHUD();
-  renderTaskList();
+  // Pass pre-loaded tasks array to avoid duplicate localStorage calls
+  updateHUD(tasks);
+  renderTaskList(tasks);
 }
 
 /** Clears and redraws the entire grid. */
@@ -183,16 +184,16 @@ function renderGrid() {
     }
   }
 
-  updateHUD();
-  renderTaskList();
+  // Pass pre-loaded tasks array to avoid duplicate localStorage calls
+  updateHUD(tasks);
+  renderTaskList(tasks);
 }
 
 /** Renders the list of active tasks in the sidebar panel. */
-function renderTaskList() {
+// Performance optimization: Accepts optional pre-loaded `tasks` array to avoid duplicate localStorage reads and JSON parsing.
+function renderTaskList(tasks = loadTasks()) {
   const listEl = document.getElementById("sidebar-task-list");
   if (!listEl) return;
-
-  const tasks = loadTasks();
   if (tasks.length === 0) {
     listEl.innerHTML = `<div style="color: #82908a; font-size: 0.8rem; text-align: center; padding: 12px;">No active buildings. Click an empty plot on the grid to build one!</div>`;
     return;
