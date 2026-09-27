@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/grid/city_grid.tscn" id="2_grid"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/task_creation_panel.tscn" id="4_create"]
+[ext_resource type="PackedScene" path="res://scenes/ui/task_detail_panel.tscn" id="5_detail"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="CityGrid" parent="World" instance=ExtResource("2_grid")]
+
+[node name="Camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("3_hud")]
+
+[node name="TaskCreationPanel" parent="UI" instance=ExtResource("4_create")]
+
+[node name="TaskDetailPanel" parent="UI" instance=ExtResource("5_detail")]

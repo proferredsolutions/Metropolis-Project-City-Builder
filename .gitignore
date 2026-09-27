@@ -1,0 +1,21 @@
+# Godot
+.godot/
+.import/
+export.cfg
+export_credentials.cfg
+build/
+*.translation
+
+# Godot Mono (unused, but ignore just in case)
+.mono/
+data_*/
+mono_crash.*.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python (tools/)
+__pycache__/
+*.pyc

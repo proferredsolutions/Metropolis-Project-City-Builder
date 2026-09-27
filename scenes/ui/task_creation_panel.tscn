@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/task_creation_panel.gd" id="1_panel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icon_confirm.png" id="2_confirm"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icon_cancel.png" id="3_cancel"]
+
+[node name="TaskCreationPanel" type="Control"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_panel")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.08, 0.55)
+
+[node name="Center" type="CenterContainer" parent="Dim"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Dim/Center"]
+custom_minimum_size = Vector2(420, 0)
+
+[node name="Box" type="VBoxContainer" parent="Dim/Center/Panel"]
+theme_override_constants/separation = 10
+
+[node name="Heading" type="Label" parent="Dim/Center/Panel/Box"]
+text = "New Task / Project"
+theme_override_font_sizes/font_size = 20
+modulate = Color(1, 0.93, 0.72, 1)
+
+[node name="NameLabel" type="Label" parent="Dim/Center/Panel/Box"]
+text = "Name"
+
+[node name="TitleEdit" type="LineEdit" parent="Dim/Center/Panel/Box"]
+placeholder_text = "e.g. Ship the release"
+
+[node name="DescriptionLabel" type="Label" parent="Dim/Center/Panel/Box"]
+text = "Description"
+
+[node name="DescriptionEdit" type="TextEdit" parent="Dim/Center/Panel/Box"]
+custom_minimum_size = Vector2(0, 64)
+
+[node name="DurationLabel" type="Label" parent="Dim/Center/Panel/Box"]
+text = "Deadline"
+
+[node name="DurationOption" type="OptionButton" parent="Dim/Center/Panel/Box"]
+
+[node name="SubtasksLabel" type="Label" parent="Dim/Center/Panel/Box"]
+text = "Subtasks (comma separated)"
+
+[node name="SubtasksEdit" type="LineEdit" parent="Dim/Center/Panel/Box"]
+placeholder_text = "design, build, test"
+
+[node name="PreviewLabel" type="Label" parent="Dim/Center/Panel/Box"]
+theme_override_font_sizes/font_size = 12
+modulate = Color(0.7, 0.85, 1, 1)
+
+[node name="StatusLabel" type="Label" parent="Dim/Center/Panel/Box"]
+visible = false
+theme_override_font_sizes/font_size = 12
+modulate = Color(1, 0.6, 0.55, 1)
+
+[node name="Buttons" type="HBoxContainer" parent="Dim/Center/Panel/Box"]
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="CancelButton" type="Button" parent="Dim/Center/Panel/Box/Buttons"]
+text = "Cancel"
+icon = ExtResource("3_cancel")
+expand_icon = true
+
+[node name="CreateButton" type="Button" parent="Dim/Center/Panel/Box/Buttons"]
+text = "Create"
+icon = ExtResource("2_confirm")
+expand_icon = true

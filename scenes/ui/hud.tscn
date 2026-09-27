@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icon_create.png" id="2_icon"]
+
+[node name="HUD" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hud")
+
+[node name="TopLeft" type="PanelContainer" parent="."]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 244.0
+offset_bottom = 100.0
+
+[node name="Box" type="VBoxContainer" parent="TopLeft"]
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="TopLeft/Box"]
+text = "METROPOLIS"
+theme_override_font_sizes/font_size = 13
+modulate = Color(1, 0.93, 0.72, 1)
+
+[node name="LevelLabel" type="Label" parent="TopLeft/Box"]
+text = "Level 1"
+
+[node name="XPBar" type="ProgressBar" parent="TopLeft/Box"]
+custom_minimum_size = Vector2(0, 10)
+show_percentage = false
+max_value = 100.0
+
+[node name="LandLabel" type="Label" parent="TopLeft/Box"]
+text = "Land 5x5"
+theme_override_font_sizes/font_size = 11
+modulate = Color(0.82, 0.84, 0.9, 1)
+
+[node name="NewTaskButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -148.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 15
+text = "New Task"
+icon = ExtResource("2_icon")
+expand_icon = true
+
+[node name="TaskListPanel" type="PanelContainer" parent="."]
+offset_left = 12.0
+offset_top = 112.0
+offset_right = 244.0
+offset_bottom = 596.0
+
+[node name="Box" type="VBoxContainer" parent="TaskListPanel"]
+theme_override_constants/separation = 6
+
+[node name="CountLabel" type="Label" parent="TaskListPanel/Box"]
+text = "Tasks (0)"
+theme_override_font_sizes/font_size = 13
+modulate = Color(1, 0.93, 0.72, 1)
+
+[node name="Scroll" type="ScrollContainer" parent="TaskListPanel/Box"]
+horizontal_scroll_mode = 0
+size_flags_vertical = 3
+
+[node name="TaskList" type="VBoxContainer" parent="TaskListPanel/Box/Scroll"]
+theme_override_constants/separation = 6
+size_flags_horizontal = 3
+
+[node name="Toast" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -52.0
+offset_right = 360.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1

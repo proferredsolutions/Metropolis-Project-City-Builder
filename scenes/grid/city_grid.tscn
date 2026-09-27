@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/grid_highlight.gd" id="1_highlight"]
+[ext_resource type="Script" path="res://scripts/ui/city_grid.gd" id="2_grid"]
+
+[node name="CityGrid" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("2_grid")
+
+[node name="TileMap" type="TileMap" parent="."]
+
+[node name="Decor" type="Node2D" parent="."]
+
+[node name="Highlight" type="Node2D" parent="."]
+z_index = 5
+script = ExtResource("1_highlight")
